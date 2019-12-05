@@ -1,0 +1,22 @@
+---
+- name: Update directory permissions
+  file:
+    path: '{{ item.path }}'
+    mode: '{{ item.mode }}'
+    state: directory
+    owner: vagrant
+    group: www-data
+    recurse: true
+  loop:
+    - path: '{{ release_drupal_path }}'
+      mode: u=rwX,g=rX,o=
+    - path: '{{ ansistrano_shared_path }}/{{ project_web_root }}/sites/default/files'
+      mode: ug=rwX,o=
+
+- name: Update file permissions
+  file:
+    path: '{{ release_drupal_path }}/sites/default/settings.php'
+    mode: ug=r,o=
+    state: file
+    owner: vagrant
+    group: www-data

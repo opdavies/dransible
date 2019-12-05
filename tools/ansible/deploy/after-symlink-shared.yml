@@ -1,0 +1,12 @@
+---
+- name: Install Drupal
+  command: |
+    {{ release_drush_path }} site-install config_installer -y
+    --account-pass=admin123
+  args:
+    chdir: '{{ release_drupal_path }}'
+
+- name: Rebuild cache
+  command: '{{ release_drush_path }} cache-rebuild'
+  args:
+    chdir: '{{ release_drupal_path }}'

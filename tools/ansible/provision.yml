@@ -1,0 +1,36 @@
+---
+- hosts: webservers
+  name: Provision the webserver machines
+  become: true
+
+  roles:
+    - role: geerlingguy.apache
+      tags: [web]
+    - role: geerlingguy.mysql
+      tags: [mysql]
+    - role: geerlingguy.php-versions
+      tags: [php]
+    - role: geerlingguy.php
+      tags: [php]
+    - role: geerlingguy.php-mysql
+      tags: [php, mysql]
+    - role: geerlingguy.composer
+      tags: [php, composer]
+
+  vars_files:
+    - vars/provision_vault.yml
+    - vars/vars.yml
+    - vars/provision_vars.yml
+
+  tasks:
+    - name: Create a database
+      mysql_db:
+        name: '{{ database_name }}'
+        state: present
+
+    - name: Add the database user
+      mysql_user:
+        name: '{{ database_user }}'
+        password: '{{ database_password }}'
+        priv: '*.*:ALL'
+        state: present

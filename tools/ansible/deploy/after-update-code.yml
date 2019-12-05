@@ -1,0 +1,9 @@
+---
+- name: Install Composer dependencies
+  composer:
+    command: install
+    working_dir: '{{ ansistrano_release_path.stdout }}'
+
+- name: Generate settings.php file
+  include_role:
+    name: './roles/drupal-settings'

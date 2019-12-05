@@ -1,0 +1,9 @@
+---
+ansistrano_current_dir: current
+
+database_name: "{{ vault_database_name }}"
+database_password: "{{ vault_database_password }}"
+database_user: "{{ vault_database_user }}"
+
+project_deploy_path: /app
+project_web_root: web

@@ -1,0 +1,11 @@
+---
+server_document_root: '{{ project_deploy_path }}/{{ ansistrano_current_dir }}/{{ project_web_root }}'
+
+apache_vhosts:
+  - servername: dransible
+    documentroot: '{{ server_document_root }}'
+
+php_version: '7.4'
+php_packages_extra:
+  - libapache2-mod-php{{ php_version }}
+  - libpcre3-dev

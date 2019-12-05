@@ -1,0 +1,27 @@
+---
+ansistrano_allow_anonymous_stats: false
+
+release_drupal_path: "{{ ansistrano_release_path.stdout }}/{{ project_web_root }}"
+release_drush_path: "{{ ansistrano_release_path.stdout }}/vendor/bin/drush"
+
+hash_salt: "{{ vault_hash_salt }}"
+install_drupal: true
+
+drupal_settings:
+  - drupal_root: '{{ release_drupal_path }}'
+    sites:
+      - name: default
+        settings:
+          databases:
+            default:
+              default:
+                driver: mysql
+                host: localhost
+                database: '{{ database_name }}'
+                username: '{{ database_user }}'
+                password: '{{ database_password }}'
+          hash_salt: '{{ hash_salt }}'
+          config_directories:
+            sync: ../config/sync
+          trusted_hosts:
+            - '^dransible$'
