@@ -1,5 +1,15 @@
 # Dransible
 
+## Prerequisites
+
+- [Ansible][ansible]
+- [Vagrant][vagrant]
+- Recommended: [Vagrant::Hostsupdater plugin][hostsupdater]
+
+[ansible]: https://www.ansible.com
+[hostsupdater]: https://github.com/cogitatio/vagrant-hostsupdater
+[vagrant]: https://www.vagrantup.com
+
 ## Installation
 
 1. Download roles from Galaxy:
