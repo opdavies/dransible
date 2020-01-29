@@ -5,6 +5,7 @@
     --account-pass=admin123
   args:
     chdir: '{{ release_drupal_path }}'
+  when: drupal_install
 
 - name: Rebuild cache
   command: '{{ release_drush_path }} cache-rebuild'
