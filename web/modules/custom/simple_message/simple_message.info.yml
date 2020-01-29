@@ -1,0 +1,5 @@
+name: Simple Message
+description: Displays a simple message.
+core: 8.x
+type: module
+package: Custom
