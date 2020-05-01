@@ -6,4 +6,4 @@
 
 - name: Generate settings.php file
   include_role:
-    name: './roles/drupal-settings'
+    name: opdavies.drupal_settings_files
