@@ -1,7 +1,7 @@
 ---
 - name: Install Drupal
   command: |
-    {{ release_drush_path }} site-install config_installer -y
+    {{ release_drush_path }} site-install -y \
     --account-pass=admin123
   args:
     chdir: '{{ release_drupal_path }}'
