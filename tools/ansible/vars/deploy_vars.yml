@@ -1,5 +1,6 @@
 ---
 ansistrano_allow_anonymous_stats: false
+ansistrano_keep_releases: 5
 
 release_drupal_path: "{{ ansistrano_release_path.stdout }}/{{ project_web_root }}"
 release_drush_path: "{{ ansistrano_release_path.stdout }}/vendor/bin/drush"
@@ -25,3 +26,5 @@ drupal_settings:
             sync: ../config/sync
           trusted_hosts:
             - '^dransible$'
+          # extra_parameters:
+          #   $config['system.site']['name'] = 'oliverdavies.uk';
