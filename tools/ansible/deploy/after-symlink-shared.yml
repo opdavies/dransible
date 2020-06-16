@@ -1,13 +1,39 @@
 ---
 - name: Install Drupal
-  command: |
-    {{ release_drush_path }} site-install config_installer -y
+  command: >
+    {{ release_drush_path }}
+    site-install -y
     --account-pass=admin123
-  args:
-    chdir: '{{ release_drupal_path }}'
-  when: drupal_install
+    config_installer
+    chdir={{ release_drupal_path }}
+  when: drupal_install|bool
 
-- name: Rebuild cache
-  command: '{{ release_drush_path }} cache-rebuild'
-  args:
-    chdir: '{{ release_drupal_path }}'
+- name: Post-update tasks
+  when: not drupal_install|bool
+  block:
+    - name: Clear Drush cache
+      command: >
+        {{ release_drush_path }}
+        cache-clear drush
+        chdir={{ release_drupal_path }}
+
+    - name: Run database updates
+      command: >
+        {{ release_drush_path }}
+        updatedb -y
+        chdir={{ release_drupal_path }}
+      register: update_database_output
+      changed_when: "'No pending updates' not in update_database_output.stderr"
+
+    - name: Import configuration
+      command: >
+        {{ release_drush_path }}
+        config-import -y
+        chdir={{ release_drupal_path }}
+      register: config_import_output
+      changed_when: "'There are no changes to import' not in config_import_output.stderr"
+
+    - name: Rebuild cache
+      command: >
+        {{ release_drush_path }} cache-rebuild
+        chdir={{ release_drupal_path }}
