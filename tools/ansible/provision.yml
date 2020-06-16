@@ -23,6 +23,11 @@
     - vars/provision_vars.yml
 
   tasks:
+    - name: Install base packages
+      apt:
+        name: [zip]
+        state: present
+
     - name: Create a database
       mysql_db:
         name: '{{ database_name }}'
