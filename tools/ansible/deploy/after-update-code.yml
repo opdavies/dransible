@@ -2,6 +2,7 @@
 - name: Install Composer dependencies
   composer:
     command: install
+    optimize_autoloader: true
     working_dir: '{{ ansistrano_release_path.stdout }}'
 
 - name: Generate settings.php file
