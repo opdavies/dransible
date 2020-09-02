@@ -1,3 +1,4 @@
+.vagrant/
 tools/ansible/.roles/
 vendor/
 web/
