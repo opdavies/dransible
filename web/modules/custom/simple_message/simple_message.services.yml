@@ -1,4 +1,7 @@
 services:
+  Drupal\Core\Messenger\MessengerInterface:
+    alias: messenger
+
   Drupal\simple_message\DisplaySimpleMessage:
     autowire: true
     tags:
