@@ -4,7 +4,7 @@
     {{ release_drush_path }}
     site-install -y
     --account-pass=admin123
-    config_installer
+    --existing-config
     chdir={{ release_drupal_path }}
   when: drupal_install|bool
 
