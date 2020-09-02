@@ -24,6 +24,10 @@ class DisplaySimpleMessage implements EventSubscriberInterface {
   }
 
   public function displayMessage(GetResponseEvent $event) {
+    if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+      return;
+    }
+
     $this->messenger->addMessage($this->t('This site is running on a <a href="@vagrant">Vagrant</a> server, deployed with <a href="@ansible">Ansible</a> and <a href="@ansistrano">Ansistrano</a>.', [
       '@ansible' => 'https://ansible.com',
       '@ansistrano' => 'https://ansistrano.com',
