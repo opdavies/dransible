@@ -27,5 +27,7 @@ drupal_settings:
           trusted_hosts:
             - '^dransible$'
           extra_parameters: |
+            $settings['config_sync_directory'] = '../config/sync';
+
             $settings['deployment_identifier'] = '{{ ansistrano_release_version }}';
           #   $config['system.site']['name'] = 'oliverdavies.uk';
