@@ -17,12 +17,12 @@
     "require": {
         "composer/installers": "^1.2",
         "drupal/admin_toolbar": "^2.0",
-        "drupal/core-composer-scaffold": "^8.9",
-        "drupal/core-recommended": "^8.9",
+        "drupal/core-composer-scaffold": "^9.0",
+        "drupal/core-recommended": "^9.0",
         "drupal/upgrade_status": "^2.9"
     },
     "require-dev": {
-        "drupal/core-dev": "^8.9"
+        "drupal/core-dev": "^9.0"
     },
     "conflict": {
         "drupal/drupal": "*"
